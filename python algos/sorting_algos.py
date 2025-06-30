@@ -42,6 +42,11 @@ def bubble_sort(arr: list) -> list:
     return arr
 
 def insertion_sort(arr: list) -> list:
+    """
+    Insertion sort, assumes the first element is sorted, start from the second element, if the sorted element > second element, swap positions
+    and increase the sorted part of the array
+    Worst case: O(n^2), if the list is in reverse order
+    """
     n = len(arr)
 
     for i in range(1, n):
@@ -49,12 +54,11 @@ def insertion_sort(arr: list) -> list:
         
         for j in range(i-1, -1, -1):
             if arr[j] > current_elem:
-                arr[j+1] = arr[j]
-        arr[j] = current_elem
+                arr[j+1], arr[j] = arr[j], current_elem
     return arr
 
 
 
 if __name__ == "__main__":
-    unsorted_arr = [4,2,3,1]
+    unsorted_arr = [7,8,2,1,3,4,6,5]
     print(insertion_sort(unsorted_arr))
