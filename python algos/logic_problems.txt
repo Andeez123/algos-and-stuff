@@ -1,0 +1,4 @@
+Checking even odd:
+Naive approach: modulo 2 O(1) time and space
+Efficient approach: bitwise operator O(1) time and space
+-> bitwise operators are preffered as they operate directly at the binary level
