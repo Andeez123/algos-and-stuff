@@ -57,6 +57,32 @@ def insertion_sort(arr: list) -> list:
                 arr[j+1], arr[j] = arr[j], current_elem
     return arr
 
+def merge_arrays(arr: list, start: int, mid: int, end: int, tmp: list) -> None:
+    
+
+def merge_sort_aux(arr: list, start: int, end: int, tmp: list) -> None:
+    # pointers dont meet, 2 or more items left to sort
+    if not start == end:
+        mid = (start + end) // 2
+
+        # split into two halves
+        merge_sort_aux(arr, start, mid, tmp)
+        merge_sort_aux(arr, mid+1, end, tmp)
+
+        # merge
+        merge_arrays(arr, start, mid, end, tmp)
+
+        for i in range(start, end+1):
+            arr[i] = tmp[i]
+
+
+def merge_sort(arr: list) -> None:
+    tmp = []
+
+    start = 0
+    end = len(arr) - 1
+
+    merge_sort_aux(arr, start, end, tmp)
 
 
 if __name__ == "__main__":
