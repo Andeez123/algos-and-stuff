@@ -58,7 +58,24 @@ def insertion_sort(arr: list) -> list:
     return arr
 
 def merge_arrays(arr: list, start: int, mid: int, end: int, tmp: list) -> None:
-    
+    p_a = start
+    p_b = mid + 1
+
+    for i in range(start, end+1):
+        if p_a > mid: # first half finished, continue on with second half
+            tmp[i] = arr[p_b]
+            p_b += 1
+        elif p_b > end: # second half finished, continue with first half
+            tmp[i] = arr[p_a]
+            p_a += 1
+        elif arr[p_a] <= arr[p_b]: # copy arr[p_a]
+            # print(tmp[i])
+            # print(arr[i])
+            tmp[i] = arr[p_a]
+            p_a += 1
+        else:
+            tmp[i] = arr[p_b] # copy arr[p_b]
+            p_b += 1    
 
 def merge_sort_aux(arr: list, start: int, end: int, tmp: list) -> None:
     # pointers dont meet, 2 or more items left to sort
@@ -77,14 +94,15 @@ def merge_sort_aux(arr: list, start: int, end: int, tmp: list) -> None:
 
 
 def merge_sort(arr: list) -> None:
-    tmp = []
+    tmp = [0] * len(arr)
 
     start = 0
     end = len(arr) - 1
 
     merge_sort_aux(arr, start, end, tmp)
+    return arr
 
 
 if __name__ == "__main__":
-    unsorted_arr = [7,8,2,1,3,4,6,5]
-    print(insertion_sort(unsorted_arr))
+    unsorted_arr = [2,3,1,4]
+    print(merge_sort(unsorted_arr))
