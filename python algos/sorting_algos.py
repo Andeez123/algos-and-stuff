@@ -93,7 +93,7 @@ def merge_sort_aux(arr: list, start: int, end: int, tmp: list) -> None:
             arr[i] = tmp[i]
 
 
-def merge_sort(arr: list) -> None:
+def merge_sort(arr: list) -> list:
     tmp = [0] * len(arr)
 
     start = 0
@@ -102,7 +102,48 @@ def merge_sort(arr: list) -> None:
     merge_sort_aux(arr, start, end, tmp)
     return arr
 
+def swap(arr: list, high: int, low: int) -> int:
+    """
+    Method to swap elements
+    """
+    arr[high], arr[low] = arr[low], arr[high]
+
+def partition(arr: list, high: int, low: int):
+    """
+    Quick sort partition function
+    """
+    mid = (high+low) // 2 
+    pivot = arr[mid] # selecting pivot as median element
+    swap(arr, high, mid) # swap the median element to the front end of array
+
+    boundary = high # set boundary at front of array
+
+    for k in range(high + 1, low + 1): # loop for all elements except from the first, which is where the pivot is
+        if arr[k] < pivot: # if element is less than pivot
+            boundary += 1 # increase boundary range
+            swap(arr, k, boundary) # swap element k to boundary 
+    swap(arr, high, boundary) # swap the median value back to the boundary point, which is the final position of the median
+    return boundary
+    
+
+def quick_sort_aux(arr: list, high: int, low: int) -> None:
+    """
+    Recursive quick sort function
+    """
+    if (high < low): # if start and end are not the same points
+        boundary = partition(arr, high, low) # setup initial boundary
+        quick_sort_aux(arr, high, boundary - 1) 
+        quick_sort_aux(arr, boundary + 1, low)
+
+def quick_sort(arr:list) -> list:
+    """
+    Quick sort entry point
+    """
+    start = 0
+    end = len(arr) - 1
+    quick_sort_aux(arr, start, end)
+    return arr
 
 if __name__ == "__main__":
     unsorted_arr = [2,3,1,4]
-    print(merge_sort(unsorted_arr))
+    print(quick_sort(unsorted_arr))
