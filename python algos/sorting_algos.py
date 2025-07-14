@@ -94,6 +94,9 @@ def merge_sort_aux(arr: list, start: int, end: int, tmp: list) -> None:
 
 
 def merge_sort(arr: list) -> list:
+    """
+    Time complexity: O(nlogn) * CompEq
+    """
     tmp = [0] * len(arr)
 
     start = 0
@@ -138,6 +141,8 @@ def quick_sort_aux(arr: list, high: int, low: int) -> None:
 def quick_sort(arr:list) -> list:
     """
     Quick sort entry point
+    Best case: always pick median as pivot: O(nlogn) * CompEq
+    Worst case: always pick min/max as pivot: O(n^2) * CompEq
     """
     start = 0
     end = len(arr) - 1
