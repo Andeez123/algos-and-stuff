@@ -38,3 +38,10 @@ print(square(5))
 l1 = [2,3,4]
 l2 = list(map(square, l1))
 print(l2)
+
+arr = [1,2,3,4,5]
+for i in arr:
+    if i == 6:
+        break
+else: 
+    print("not found")
